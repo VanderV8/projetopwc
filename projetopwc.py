@@ -1,6 +1,7 @@
-
-
+import re
 # 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
+
+
 def inverter_texto(texto):
 
     # Divide o texto pelos caracteres de espaço, criando uma nova lista.
@@ -43,7 +44,6 @@ print(texto)
 
 # 3 Encontre a substring palindromo mais longa na string abaixo.
 
-
 def achar_palindromo(texto):
 
     # Deixa a string com letras minúsculas
@@ -53,20 +53,42 @@ def achar_palindromo(texto):
     texto_separado = texto_minus.split()
     texto_junto = ''.join(texto_separado)
 
-    texto_junto = len(texto)
+    tamanho = len(texto_junto)
     palindromo = ''
 
-    for letra in range(texto_junto):
-        for ultima in range(letra+1, texto_junto+1):
-            substring = texto[letra:ultima]
+    for letra in range(tamanho):
+        for ultima in range(letra+1, tamanho+1):
+            substring = texto_junto[letra:ultima]
             if substring == substring[::-1] and len(substring) > len(palindromo):
                 palindromo = substring
 
     return palindromo
 
 
-string3 = "babad"
+string3 = "banana"
 texto = achar_palindromo(string3)
 print(texto)
 
-#
+
+# 4 Coloque em maiusculo a primeira letra de cada frase na string.
+
+def primeira_maiuscula(texto):
+
+    padrao = r"[.!?]+[\s]*"
+    lista_palavras = re.split(padrao, texto)
+
+    maiuscula = ''
+
+    for palavra in lista_palavras:
+        frase_formatada = palavra.capitalize()
+        maiuscula += frase_formatada + '. '
+
+    texto_junto = ''.join(maiuscula)
+    return texto_junto
+
+
+string4 = "hello. how are you? i'm fine, thank you"
+texto = primeira_maiuscula(string4)
+print(texto)
+
+
