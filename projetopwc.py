@@ -1,6 +1,7 @@
 import re
-# 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
 
+
+# 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
 
 def inverter_texto(texto):
 
@@ -53,12 +54,19 @@ def achar_palindromo(texto):
     texto_separado = texto_minus.split()
     texto_junto = ''.join(texto_separado)
 
+    # Define o tamanho que vamos percorrer com o for.
     tamanho = len(texto_junto)
+
+    # Variavel que recebe o maior palindromo.
     palindromo = ''
 
+    # Loop que percorre cada letra da frase.
     for letra in range(tamanho):
+        # Loop que percorre as letras passando a posição da variavel "letra" para variavel "ultimo", aumentando de um em um a posição.
         for ultima in range(letra+1, tamanho+1):
+            # Substring que recebe a frase nova com a posição da "Letra" e a posição "ultima" formando uma nova frase.
             substring = texto_junto[letra:ultima]
+            # confere se a substring é um palindromo e se o tamanho dela é maior que a ultima substring armazenada.
             if substring == substring[::-1] and len(substring) > len(palindromo):
                 palindromo = substring
 
@@ -74,14 +82,20 @@ print(texto)
 
 def primeira_maiuscula(texto):
 
+    # Padrões de caracteres que vão dividir a frase em uma nova lista.
     padrao = r"[.!?]+[\s]*"
+    # Nova lista que procura os padrões dentro da frase.
     lista_palavras = re.split(padrao, texto)
 
+    # Varivel que resebe a nova frase.
     maiuscula = ''
 
+    # loop que passa pelas palavras da lista_palavras
     for palavra in lista_palavras:
-        frase_formatada = palavra.capitalize()
-        maiuscula += frase_formatada + '. '
+        # Coloca a palavra em maiúsculo
+        palavra_formatada = palavra.capitalize()
+        # Costroi a frase com as palavras formatadas e com os espaçoes.
+        maiuscula += palavra_formatada + '. '
 
     texto_junto = ''.join(maiuscula)
     return texto_junto
@@ -92,3 +106,34 @@ texto = primeira_maiuscula(string4)
 print(texto)
 
 
+# 5 Verificar se a string é um anagrama de um palindromo:
+
+def verifica_anagrama(texto):
+
+    # contador de impares. (para saber se a palavra pode ser um anagrama vemos se ela tem uma unica letra impar)
+    contagem = {}
+
+    # Conta quantos letras temos na string e adiciona ela em um dicionario.
+    for letra in texto:
+        if letra in contagem:
+            contagem[letra] += 1
+        else:
+            contagem[letra] = 1
+
+    # Variavel que recebe o numeros impares.
+    num_impares = 0
+
+    # Loop que passa pelos valores da biblioteca.
+    for count in contagem.values():
+        # confere se o numero é impar.
+        if count % 2 != 0:
+            num_impares += 1
+            # confere se temos mais de um numero impar na biblioteca e retorna falso.
+            if num_impares > 1:
+                return False
+
+    return True
+
+
+string5 = "racecar"
+print(verifica_anagrama(string5))
