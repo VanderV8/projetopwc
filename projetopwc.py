@@ -2,9 +2,7 @@ import re
 
 
 # 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
-
 def inverter_texto(texto):
-
     # Divide o texto pelos caracteres de espaço, criando uma nova lista.
     texto_dividido = texto.split()
 
@@ -12,25 +10,22 @@ def inverter_texto(texto):
     invertido = texto_dividido[::-1]
 
     # Junta os elementos criando uma nova String separada por espaços.
-    pronto = ' '.join(invertido)
+    pronto = " ".join(invertido)
 
     return pronto
 
 
 string1 = "Hello, World! OpenAI is amazing"
-texto = inverter_texto(string1)
-print(texto)
+print(inverter_texto(string1))
 
 
 # 2 Remova todos os caracteres duplicados da string abaixo.
 def remove_duplicado(texto):
-
     # string vazia
     sem_duplicado = ""
 
     # percorre todos os caracteres da string
     for caracter in texto:
-
         # Confere se o caracter já existe na nova string (String vazia) e adiciona se não existir.
         if caracter not in sem_duplicado:
             sem_duplicado += caracter
@@ -39,31 +34,28 @@ def remove_duplicado(texto):
 
 
 string2 = "Hello, World!"
-texto = remove_duplicado(string2)
-print(texto)
+print(remove_duplicado(string2))
 
 
 # 3 Encontre a substring palindromo mais longa na string abaixo.
-
 def achar_palindromo(texto):
-
     # Deixa a string com letras minúsculas
     texto_minus = texto.lower()
 
     # separa a string pelos caracteres de espaço e depois junta a sring com o join sem espaços.
     texto_separado = texto_minus.split()
-    texto_junto = ''.join(texto_separado)
+    texto_junto = "".join(texto_separado)
 
     # Define o tamanho que vamos percorrer com o for.
     tamanho = len(texto_junto)
 
     # Variavel que recebe o maior palindromo.
-    palindromo = ''
+    palindromo = ""
 
     # Loop que percorre cada letra da frase.
     for letra in range(tamanho):
         # Loop que percorre as letras passando a posição da variavel "letra" para variavel "ultimo", aumentando de um em um a posição.
-        for ultima in range(letra+1, tamanho+1):
+        for ultima in range(letra + 1, tamanho + 1):
             # Substring que recebe a frase nova com a posição da "Letra" e a posição "ultima" formando uma nova frase.
             substring = texto_junto[letra:ultima]
             # confere se a substring é um palindromo e se o tamanho dela é maior que a ultima substring armazenada.
@@ -74,43 +66,37 @@ def achar_palindromo(texto):
 
 
 string3 = "banana"
-texto = achar_palindromo(string3)
-print(texto)
+print(achar_palindromo(string3))
 
 
-# 4 Coloque em maiusculo a primeira letra de cada frase na string.
-
+# 4 Coloque em maiúsculo a primeira letra de cada frase na string.
 def primeira_maiuscula(texto):
-
     # Padrões de caracteres que vão dividir a frase em uma nova lista.
     padrao = r"[.!?]+[\s]*"
     # Nova lista que procura os padrões dentro da frase.
     lista_palavras = re.split(padrao, texto)
 
     # Varivel que resebe a nova frase.
-    maiuscula = ''
+    maiuscula = ""
 
     # loop que passa pelas palavras da lista_palavras
     for palavra in lista_palavras:
         # Coloca a palavra em maiúsculo
         palavra_formatada = palavra.capitalize()
         # Costroi a frase com as palavras formatadas e com os espaçoes.
-        maiuscula += palavra_formatada + '. '
+        maiuscula += palavra_formatada + ". "
 
-    texto_junto = ''.join(maiuscula)
+    texto_junto = "".join(maiuscula)
     return texto_junto
 
 
 string4 = "hello. how are you? i'm fine, thank you"
-texto = primeira_maiuscula(string4)
-print(texto)
+print(primeira_maiuscula(string4))
 
 
 # 5 Verificar se a string é um anagrama de um palindromo:
-
 def verifica_anagrama(texto):
-
-    # contador de impares. (para saber se a palavra pode ser um anagrama vemos se ela tem uma unica letra impar)
+    # contador de impares. (para saber se a palavra pode ser um anagrama de um palindromo vemos se ela tem uma unica letra com uma ocorrência impar)
     contagem = {}
 
     # Conta quantos letras temos na string e adiciona ela em um dicionario.
@@ -137,3 +123,51 @@ def verifica_anagrama(texto):
 
 string5 = "racecar"
 print(verifica_anagrama(string5))
+
+# Criando MENU.
+
+tam = 50
+opcoes = {
+    "1": "inverter frase",
+    "2": "Remover caracteres duplicados",
+    "3": "substring palindromo mais longa",
+    "4": "Maiúsculo na primeira letra de cada frase",
+    "5": "Verificar anagrama de um palindromo",
+    "0": "para sair",
+}
+
+while True:
+    # Cria um Menu com um tamanho ajustavel.
+    print(f"+{'-' * tam}+")
+    print(f"|{'MENU':^{tam}}|")
+    print(f"+{'-' * tam}+")
+    for (
+        numero,
+        texto,
+    ) in opcoes.items():
+        print(f"|{f' {numero} - {texto}':{tam}}|")
+    print(f"+{'-' * tam}+")
+
+    op = input("Escolha a sua opção: ")
+
+    if op not in opcoes:
+        print("\n\033[1;30;41mOpção invalida!!!\033[m\n")
+        continue
+
+    if op == "1":
+        frase = input("Digite a sua frase para invertela: ")
+        invertida = inverter_texto(frase)
+        print(invertida)
+        continue
+
+    if op == "2":
+        continue
+    if op == "3":
+        continue
+    if op == "4":
+        continue
+    if op == "5":
+        continue
+
+    if op == "0":
+        break
