@@ -53,12 +53,19 @@ def achar_palindromo(texto):
     texto_separado = texto_minus.split()
     texto_junto = ''.join(texto_separado)
 
+    # Define o tamanho que vamos percorrer com o for.
     tamanho = len(texto_junto)
+
+    # Variavel que recebe o maior palindromo.
     palindromo = ''
 
+    # Loop que percorre cada letra da frase.
     for letra in range(tamanho):
+        # Loop que percorre as letras passando a posição da variavel "letra" para variavel "ultimo", aumentando de um em um a posição.
         for ultima in range(letra+1, tamanho+1):
+            # Substring que recebe a frase nova com a posição da "Letra" e a posição "ultima" formando uma nova frase.
             substring = texto_junto[letra:ultima]
+            # confere se a substring é um palindromo e se o tamanho dela é maior que a ultima substring armazenada.
             if substring == substring[::-1] and len(substring) > len(palindromo):
                 palindromo = substring
 
@@ -74,11 +81,15 @@ print(texto)
 
 def primeira_maiuscula(texto):
 
+    # Padrões de caracteres que vão dividir a frase em uma nova lista.
     padrao = r"[.!?]+[\s]*"
+    # Nova lista que procura os padrões dentro da frase.
     lista_palavras = re.split(padrao, texto)
 
+    # Varivel que resebe a nova frase.
     maiuscula = ''
 
+    # loop que
     for palavra in lista_palavras:
         frase_formatada = palavra.capitalize()
         maiuscula += frase_formatada + '. '
@@ -92,3 +103,46 @@ texto = primeira_maiuscula(string4)
 print(texto)
 
 
+# 5 Verificar se a string é um anagrama de um palindromo:
+
+def verifica_anagrama(texto):
+
+    contagem = {}
+    for char in texto:
+        if char in contagem:
+            contagem[char] += 1
+        else:
+            contagem[char] = 1
+
+    num_impares = 0
+    for count in contagem.values():
+        if count % 2 != 0:
+            num_impares += 1
+            if num_impares > 1:
+                return False
+
+    return True
+
+
+string5 = "racecar"
+print(verifica_anagrama(string5))
+
+
+items = "racecar vander"
+skip_next = False
+
+
+"""
+for index, item in enumerate(items):
+    if skip_next:
+        skip_next = False
+        continue  # Pula para a próxima iteração do loop
+
+    # Verifica se o item atual precisa modificar o próximo elemento
+    if item == " ":
+        x = item.upper()
+        items[index + 1] = x
+        skip_next = True  # Define o sinalizador para pular o próximo elemento
+
+    print(item)
+"""
