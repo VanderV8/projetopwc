@@ -1,6 +1,4 @@
-import re
-
-# 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
+# 1.Faça um código que reverta a ordem das palavras nas frases, mantendo a ordem das palavras.
 def inverter_texto(texto):
 
     # Divide o texto pelos caracteres de espaço, criando uma nova lista.
@@ -34,10 +32,9 @@ def achar_palindromo(texto):
     # Deixa a string com letras minúsculas
     texto_minus = texto.lower()
 
-    # separa a string pelos caracteres de espaço e depois junta a sring com o join sem espaços.
-    texto_separado = texto_minus.split()
-    texto_junto = "".join(texto_separado)
-
+    # separa a string pelos caracteres de espaço e depois junta a string com o join sem espaços extras.
+    texto_junto = ''.join(texto.strip().split())
+    
     # Define o tamanho que vamos percorrer com o for.
     tamanho = len(texto_junto)
 
@@ -59,23 +56,43 @@ def achar_palindromo(texto):
 # 4 Coloque em maiúsculo a primeira letra de cada frase na string.
 def primeira_maiuscula(texto):
 
-    # Padrões de caracteres que vão dividir a frase em uma nova lista.
-    padrao = r"[.!?]+[\s]*"
-    # Nova lista que procura os padrões dentro da frase.
-    lista_palavras = re.split(padrao, texto)
+    # separa a string pelos caracteres de espaço e depois junta a string com o join sem espaços extra.
+    texto_sem_espaco = ' '.join(texto.strip().split())    
 
-    # Varivel que resebe a nova frase.
-    maiuscula = ""
+    # difine o tamanho que vamos percorrer              
+    tamanho = len(texto_sem_espaco)-1
+    novo_texto = ""
+    i = 0
+    
+    # loop para formatar a frase para que sempre tenha espaços depois dos caracteres " . ! ? :"
+    for i in range(tamanho):
+        # Adiciona os elementos se não houver o espaço depois de um dos caracteres
+        if (texto_sem_espaco[i] == "." or texto_sem_espaco[i] == ":" or texto_sem_espaco[i] == "?" or texto_sem_espaco[i] == "!") and texto_sem_espaco[i+1] != " ":
+            x = texto_sem_espaco[i]
+            novo_texto += x + " "
+        else:
+            # Adiciona normalmente se estiver com espaço
+            x = texto_sem_espaco[i]
+            novo_texto += x
+    x = texto_sem_espaco[i+1]
+    novo_texto += x
+    
+    # Coloca o novo texto formatado em uma nova variavel e define o tamanho que vamos percorrer.
+    texto_formatado = novo_texto
+    novo_tamanho = len(texto_formatado)
+    texto_pronto = ""
 
-    # loop que passa pelas palavras da lista_palavras
-    for palavra in lista_palavras:
-        # Coloca a palavra em maiúsculo
-        palavra_formatada = palavra.capitalize()
-        # Costroi a frase com as palavras formatadas e com os espaçoes.
-        maiuscula += palavra_formatada + ". "
+    # Loop que confere se temos um espaço e um ponto antes de uma letra.
+    for i in range(novo_tamanho):
+        # Substitui o caracter para um maiúsculo se temos um espaço e um ponto antes de uma letra e se for a primeira letra da frase.
+        if i == 0 or texto_formatado[i-1] == " " and (texto_formatado[i-2] == "." or texto_formatado[i-2] == "?" or texto_formatado[i-2] == "!" or texto_formatado[i-2] == ":"):
+            texto_pronto += texto_formatado[i].upper()        
+        else:
+            # Se não houver adiciona ele normalmente.
+            x = texto_formatado[i]
+            texto_pronto += x
 
-    texto_junto = "".join(maiuscula)
-    return texto_junto
+    return texto_pronto
 
 # 5 Verificar se a string é um anagrama de um palindromo:
 def verifica_anagrama(texto):
@@ -126,8 +143,8 @@ while True:
         print(f"|{f' {numero} - {texto}':{tam}}|")
     print(f"+{'-' * tam}+")
 
-    # pede ao usuario uma opção
-    op = input("Escolha a sua opção: ")
+    # pede ao usuario uma opção.
+    op = input("Digite o NÚMERO da sua opção desejada: ")
 
     # Avisa se a opção não estiver na lista.
     if op not in opcoes:
@@ -139,7 +156,7 @@ while True:
 
         print(f"\n+{'-' * tam}+")
 
-        # Mostra exemplo
+        # Mostra exemplo.
         print("1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.\nExemplo: ")
         string1 = "Hello, World! OpenAI is amazing"
         print(string1)
@@ -154,12 +171,12 @@ while True:
 
         continue
 
-    # se 2 chama a função remove_duplicado    
+    # se 2 chama a função remove_duplicado.    
     if op == "2":
          
         print(f"\n+{'-' * tam}+")
 
-        # Mostra exemplo
+        # Mostra exemplo.
         print("2 Remova todos os caracteres duplicados da string abaixo\nExemplo:")
         string2 = "Hello, World!"
         print(string2)
@@ -170,16 +187,17 @@ while True:
         sem_duplicada = remove_duplicado(frase)
         print(sem_duplicada)
 
-        print(f"\n+{'-' * tam}+")
+        print(f"+{'-' * tam}+\n")
+
 
         continue
 
-    #  chama a 3 chama a função substring palindromo mais longa
+    #  chama a 3 chama a função substring palindromo mais longa.
     if op == "3":
 
         print(f"\n+{'-' * tam}+")
 
-        # Mostra exemplo
+        # Mostra exemplo.
         print("3 Encontre a substring palindromo mais longa na string abaixo.\nExemplo:")
         string3 = "babad"
         print(string3)
@@ -190,7 +208,7 @@ while True:
         palindromo = achar_palindromo(frase)
         print(palindromo)
 
-        print(f"\n+{'-' * tam}+")
+        print(f"+{'-' * tam}+\n")
 
         continue
 
@@ -201,7 +219,7 @@ while True:
 
         # Mostra exemplo
         print("4 Coloque em maiúsculo a primeira letra de cada frase na string.\nExemplo:")
-        string4 = "hello. how are you? i'm fine, thank you"
+        string4 = "hello. how are you? i'm fine, thank you."
         print(string4)
         print(primeira_maiuscula(string4))
  
@@ -210,30 +228,30 @@ while True:
         primeira = primeira_maiuscula(frase)
         print(primeira)
 
-        print(f"\n+{'-' * tam}+")
+        print(f"+{'-' * tam}+\n")
 
         continue
        
-    # chama a 5 chama a função que Verificar se a string é um anagrama de um palindromo: 
+    # chama a 5 chama a função que Verificar se a string é um anagrama de um palindromo. 
     if op == "5":
 
         print(f"\n+{'-' * tam}+")
 
-        # Mostra exemplo
-        print("5 Verificar se a string é um anagrama de um palindromo:\nExemplo:")
+        # Mostra exemplo.
+        print("5 Verificar se a string é um anagrama de um palindromo e retorna True or False :\nExemplo:")
         string5 = "racecar"
         print(string5)
         print(verifica_anagrama(string5))
  
-        # Pede uma frase ao usuario e chama a função para Verificar se a string é um anagrama de um palindromo
+        # Pede uma frase ao usuario e chama a função para Verificar se a string é um anagrama de um palindromo.
         frase = input("\nDigite a sua frase:\n")
         anagrama_palindromo = verifica_anagrama(frase)
         print(anagrama_palindromo)
 
-        print(f"\n+{'-' * tam}+")
+        print(f"+{'-' * tam}+\n")
 
         continue
 
-    # sai fecha o programa.    
+    # fecha o programa.    
     if op == "0":
         break
