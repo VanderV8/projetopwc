@@ -1,8 +1,8 @@
 import re
 
-
 # 1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.
 def inverter_texto(texto):
+
     # Divide o texto pelos caracteres de espaço, criando uma nova lista.
     texto_dividido = texto.split()
 
@@ -14,13 +14,9 @@ def inverter_texto(texto):
 
     return pronto
 
-
-string1 = "Hello, World! OpenAI is amazing"
-print(inverter_texto(string1))
-
-
 # 2 Remova todos os caracteres duplicados da string abaixo.
 def remove_duplicado(texto):
+
     # string vazia
     sem_duplicado = ""
 
@@ -32,13 +28,9 @@ def remove_duplicado(texto):
 
     return sem_duplicado
 
-
-string2 = "Hello, World!"
-print(remove_duplicado(string2))
-
-
 # 3 Encontre a substring palindromo mais longa na string abaixo.
 def achar_palindromo(texto):
+
     # Deixa a string com letras minúsculas
     texto_minus = texto.lower()
 
@@ -64,13 +56,9 @@ def achar_palindromo(texto):
 
     return palindromo
 
-
-string3 = "banana"
-print(achar_palindromo(string3))
-
-
 # 4 Coloque em maiúsculo a primeira letra de cada frase na string.
 def primeira_maiuscula(texto):
+
     # Padrões de caracteres que vão dividir a frase em uma nova lista.
     padrao = r"[.!?]+[\s]*"
     # Nova lista que procura os padrões dentro da frase.
@@ -89,13 +77,9 @@ def primeira_maiuscula(texto):
     texto_junto = "".join(maiuscula)
     return texto_junto
 
-
-string4 = "hello. how are you? i'm fine, thank you"
-print(primeira_maiuscula(string4))
-
-
 # 5 Verificar se a string é um anagrama de um palindromo:
 def verifica_anagrama(texto):
+    
     # contador de impares. (para saber se a palavra pode ser um anagrama de um palindromo vemos se ela tem uma unica letra com uma ocorrência impar)
     contagem = {}
 
@@ -121,11 +105,7 @@ def verifica_anagrama(texto):
     return True
 
 
-string5 = "racecar"
-print(verifica_anagrama(string5))
-
 # Criando MENU.
-
 tam = 50
 opcoes = {
     "1": "inverter frase",
@@ -137,37 +117,123 @@ opcoes = {
 }
 
 while True:
+
     # Cria um Menu com um tamanho ajustavel.
     print(f"+{'-' * tam}+")
     print(f"|{'MENU':^{tam}}|")
     print(f"+{'-' * tam}+")
-    for (
-        numero,
-        texto,
-    ) in opcoes.items():
+    for (numero,texto,) in opcoes.items():
         print(f"|{f' {numero} - {texto}':{tam}}|")
     print(f"+{'-' * tam}+")
 
+    # pede ao usuario uma opção
     op = input("Escolha a sua opção: ")
 
+    # Avisa se a opção não estiver na lista.
     if op not in opcoes:
         print("\n\033[1;30;41mOpção invalida!!!\033[m\n")
         continue
 
+    # se 1 chama a função inverter_texto.
     if op == "1":
-        frase = input("Digite a sua frase para invertela: ")
+
+        print(f"\n+{'-' * tam}+")
+
+        # Mostra exemplo
+        print("1.Faça um codigo que reverta a ordem das palavras nas frases, mantendo a ordem das palavaras.\nExemplo: ")
+        string1 = "Hello, World! OpenAI is amazing"
+        print(string1)
+        print(inverter_texto(string1))
+
+        # Pede uma frase ao usuario e chama a função para inverter a frase.
+        frase = input("\nDigite a sua frase:\n")
         invertida = inverter_texto(frase)
         print(invertida)
+
+        print(f"+{'-' * tam}+\n")
+
         continue
 
+    # se 2 chama a função remove_duplicado    
     if op == "2":
-        continue
-    if op == "3":
-        continue
-    if op == "4":
-        continue
-    if op == "5":
+         
+        print(f"\n+{'-' * tam}+")
+
+        # Mostra exemplo
+        print("2 Remova todos os caracteres duplicados da string abaixo\nExemplo:")
+        string2 = "Hello, World!"
+        print(string2)
+        print(remove_duplicado(string2))
+
+        # Pede uma frase ao usuario e chama a função para remover letras duplicadas.
+        frase = input("\nDigite a sua frase:\n")
+        sem_duplicada = remove_duplicado(frase)
+        print(sem_duplicada)
+
+        print(f"\n+{'-' * tam}+")
+
         continue
 
+    #  chama a 3 chama a função substring palindromo mais longa
+    if op == "3":
+
+        print(f"\n+{'-' * tam}+")
+
+        # Mostra exemplo
+        print("3 Encontre a substring palindromo mais longa na string abaixo.\nExemplo:")
+        string3 = "babad"
+        print(string3)
+        print(achar_palindromo(string3))    
+
+        # Pede uma frase ao usuario e chama a função para achar palindromo.
+        frase = input("\nDigite a sua frase ou palavra:\n")
+        palindromo = achar_palindromo(frase)
+        print(palindromo)
+
+        print(f"\n+{'-' * tam}+")
+
+        continue
+
+    #  chama a 4 chama a função que coloca em maiúsculo a primeira letra da frase.
+    if op == "4":
+
+        print(f"\n+{'-' * tam}+")
+
+        # Mostra exemplo
+        print("4 Coloque em maiúsculo a primeira letra de cada frase na string.\nExemplo:")
+        string4 = "hello. how are you? i'm fine, thank you"
+        print(string4)
+        print(primeira_maiuscula(string4))
+ 
+        # Pede uma frase ao usuario e chama a função para achar palindromo.
+        frase = input("\nDigite a sua frase:\n")
+        primeira = primeira_maiuscula(frase)
+        print(primeira)
+
+        print(f"\n+{'-' * tam}+")
+
+        continue
+       
+    # chama a 5 chama a função que Verificar se a string é um anagrama de um palindromo: 
+    if op == "5":
+
+        print(f"\n+{'-' * tam}+")
+
+        # Mostra exemplo
+        print("5 Verificar se a string é um anagrama de um palindromo:\nExemplo:")
+        string5 = "racecar"
+        print(string5)
+        print(verifica_anagrama(string5))
+ 
+        # Pede uma frase ao usuario e chama a função para Verificar se a string é um anagrama de um palindromo
+        frase = input("\nDigite a sua frase:\n")
+        anagrama_palindromo = verifica_anagrama(frase)
+        print(anagrama_palindromo)
+
+        print(f"\n+{'-' * tam}+")
+
+        continue
+
+    # sai fecha o programa.    
     if op == "0":
         break
