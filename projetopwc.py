@@ -157,7 +157,7 @@ while True:
     print(f"+{'-' * tam}+")
 
     # pede ao usuario uma opção.
-    op = input("Digite o NÚMERO da sua opção desejada: ")
+    op = input("Digite o NÚMERO da opção desejada: ")
 
     # Avisa se a opção não estiver na lista.
     if op not in opcoes:
